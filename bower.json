@@ -1,6 +1,6 @@
 {
   "name": "rui-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/100health/rui-components",
   "authors": [
     "TC <tc@redoxengine.com>",
@@ -32,8 +32,8 @@
     "tinycolor": "~1.1.2",
     "bootstrap": "~3.3.5",
     "angular-strap": "~2.3.0",
-    "perfect-scrollbar": "~0.6.3",
-    "angular-truncate": "*"
+    "angular-truncate": "*",
+    "angular-perfect-scrollbar": "~0.0.4"
   },
   "overrides": {
     "bootstrap": {
@@ -43,6 +43,9 @@
         "dist/css/bootstrap.css"
       ]
     }
+  },
+  "resolutions": {
+    "angular": "1.3"
   },
   "description": "UI Components based on Redox Engine"
 }

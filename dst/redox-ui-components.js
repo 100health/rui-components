@@ -100,7 +100,7 @@ angular.module('ruiComponents')
       breadcrumb:{
         state: 'devtools.index',
         title: 'Dev Tools',
-        previousState: 'application.state',
+        previousState: 'application.index',
         previousStateTitle: 'My App'
       },
       sections:[
@@ -110,9 +110,9 @@ angular.module('ruiComponents')
           icon: 'ion-monitor'
         },{
           title: 'Settings',
-          state: 'dashboard.organization.index({orgId: session.organization.id})',
+          state: 'dashboard.organization.index',
           icon: 'ion-settings',
-          hide: 'false'    //'!session.currentUser().admin'
+          hide: false    //'!session.currentUser().admin'
         },{
           title: 'FAQ',
           href: 'http://faq.redoxengine.com',
@@ -337,18 +337,23 @@ var app = angular.module('ruiComponents');
 
 
 app.directive('ruiSidenav', ['$compile', function ($compile) {
-	return {
-		restrict: 'AE',
-		scope: {
+  return {
+    restrict: 'AE',
+    scope: {
       data: '='
     },
     link: function(scope, element, attrs, ctrl, linker){
-      console.log(scope)
+
       scope.sidenavData = scope.data;
-			element.append('<div ng-include="\'templates/sidenav.html\'"></div>');
-			$compile(element.contents())(scope);
+      for (i = 0 ;i < scope.sidenavData.sections.length; i++){
+        if (scope.sidenavData.sections[i].state){
+          scope.sidenavData.sections[i].statename = scope.sidenavData.sections[i].state.toString().split("(")[0];
+        }
+      }
+      element.append('<div ng-include="\'templates/sidenav.html\'"></div>');
+      $compile(element.contents())(scope);
     }
-	};
+  };
 }]);
 
 var app = angular.module('ruiComponents');
@@ -727,11 +732,11 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "  <perfect-scrollbar class=\"sidenav\">\n" +
     "    <div class=\"breadcrumbs\">\n" +
     "      <a ng-if=\"sidenavData.breadcrumb.previousState\" ui-sref=\"{{sidenavData.breadcrumb.previousState}}\">{{sidenavData.breadcrumb.previousStateTitle | characters:11}}</a>\n" +
-    "\t\t\t<span ng-if=\"sidenavData.breadcrumb.previousState\" class=\"ion-android-arrow-forward\"></span>\n" +
-    "  \t\t<a ui-sref=\"{{sidenavData.breadcrumb.state}}\">{{sidenavData.breadcrumb.title | characters:11}}</a>\n" +
-    "  \t</div>\n" +
+    "      <span ng-if=\"sidenavData.breadcrumb.previousState\" class=\"ion-android-arrow-forward\"></span>\n" +
+    "      <a ui-sref=\"{{sidenavData.breadcrumb.state}}\">{{sidenavData.breadcrumb.title | characters:11}}</a>\n" +
+    "    </div>\n" +
     "    <ul>\n" +
-    "      <li ng-repeat=\"section in sidenavData.sections\" ng-hide=\"section.hide\" ng-class=\"$state.name === '{{section.state}}' ? 'active' :''\">\n" +
+    "      <li ng-repeat=\"section in sidenavData.sections\" ng-hide=\"section.hide\" ng-class=\"$state.name === '{{section.statename}}' ? 'active' :''\">\n" +
     "        <a ng-if=\"section.state && !section.href\" ui-sref=\"{{section.state}}\">\n" +
     "          <span class=\"{{section.icon}}\">&nbsp;&nbsp;&nbsp;{{section.title}}</span>\n" +
     "        </a>\n" +
