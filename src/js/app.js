@@ -1,4 +1,31 @@
-angular.module('ruiComponents', ['truncate', 'mgcrea.ngStrap']);
+angular.module('ruiComponents', [
+  'truncate',
+  'mgcrea.ngStrap',
+  'ui.router'])
+  .run(
+  [          '$rootScope', '$state', '$stateParams',
+    function ($rootScope,   $state,   $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+    }
+  ]
+)
+  .config(['$stateProvider', function($stateProvider){
+
+    $stateProvider
+      .state('home', {
+        url:'/',
+        templateUrl: 'index.html',
+      })
+      .state('object', {
+        url: '/:objId',
+        templateUrl: 'index.html',
+      })
+      .state('doubleobject', {
+        url: '/:objId/double/:doubleId',
+        templateUrl: 'index.html',
+      })
+  }])
 
 angular.module('ruiComponents')
   .controller('ruiAppController', ['$scope', function($scope){
@@ -17,6 +44,9 @@ angular.module('ruiComponents')
     $scope.helptextdata="data from controller";
 
     // Cards
+    $scope.objId = {id: 3};
+    $scope.doubleId = {id: 4};
+
     $scope.samplecreate = function(name){
       alert('create ' + name)
     };

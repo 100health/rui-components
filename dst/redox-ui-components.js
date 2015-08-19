@@ -1,4 +1,28 @@
-angular.module('ruiComponents', ['truncate', 'mgcrea.ngStrap']);
+angular.module('ruiComponents', [
+  'truncate',
+  'mgcrea.ngStrap',
+  'ui.router'])
+  .run(
+  [          '$rootScope', '$state', '$stateParams',
+    function ($rootScope,   $state,   $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+    }
+  ]
+)
+  .config('$stateProvider', '$urlRouteProvider', function($stateProvider, $urlRouteProvider){
+    $urlRouteProvider.otherwise('/');
+
+    $stateProvider
+      .state('home', {
+        url:'/',
+        templateUrl: 'index.html',
+      })
+      .state('object', {
+        url: '/:objId',
+        templateUrl: 'index.html',
+      })
+  })
 
 angular.module('ruiComponents')
   .controller('ruiAppController', ['$scope', function($scope){
@@ -530,10 +554,10 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "  <div>\n" +
     "    <h2 class=\"page-header\">Cards: <code>rui-card</code></h2>\n" +
-    "    <rui-card ref=\"dashboard.organization.index({orgId: org.id})\">\n" +
+    "    <rui-card ref=\"home\">\n" +
     "      Sample Organization 1\n" +
     "    </rui-card>\n" +
-    "    <rui-card ref=\"dashboard.organization.index({orgId: org.id})\">\n" +
+    "    <rui-card ref=\"object({objId: 1})\">\n" +
     "      Sample Organization 2\n" +
     "    </rui-card>\n" +
     "    <div style=\"visibility:hidden;display:block;height:0;clear:both;\"></div>\n" +

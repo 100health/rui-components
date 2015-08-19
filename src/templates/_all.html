@@ -93,12 +93,23 @@
 
   <div>
     <h2 class="page-header">Cards: <code>rui-card</code></h2>
-    <rui-card ref="dashboard.organization.index({orgId: org.id})">
+
+
+    <rui-card ref="home">
       Sample Organization 1
     </rui-card>
-    <rui-card ref="dashboard.organization.index({orgId: org.id})">
+    <rui-card ref="object({objId: 1})">
       Sample Organization 2
     </rui-card>
+    <rui-card ref="object({objId: '{{objId.id}}'})">
+      Sample Organization {{ objId.id}}
+    </rui-card>
+
+    <rui-card ref="doubleobject({objId: '{{objId.id}}', doubleId: '{{doubleId.id}}'})">
+      Sample Organization {{ doubleId.id}}
+    </rui-card>
+
+
     <div style="visibility:hidden;display:block;height:0;clear:both;"></div>
 
     <h2 class="page-header">Create Card: <code>rui-card-create</code></h2>
