@@ -433,23 +433,23 @@ app.directive('ruiToggle', ['$compile' ,function ($compile) {
 }]);
 var app = angular.module('ruiComponents');
 
-app.directive('ruiTooltip', ['$compile', function ($compile) {
-	return {
-		restrict: 'A',
-		scope: {
+app.directive('ruiTooltip', [function() {
+  return {
+    restrict: 'A',
+    scope: {
       message: '@',
       data: '='
     },
-    transclude: "element",
+    transclude: true,
     replace: true,
     templateUrl: 'templates/tooltip.html',
 
-    link: function(scope, element, attrs, ctrl, linker){
-      if (scope.data){
+    link: function(scope, element, attrs, ctrl, linker) {
+      if (scope.data) {
         scope.message = scope.data;
       }
     }
-	};
+  };
 }]);
 
 angular.module('ruiComponents').run(['$templateCache', function($templateCache) {
@@ -749,9 +749,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
 
   $templateCache.put('templates/helptext.html',
     "<div class=\"rui-helptext-container\">\n" +
-    "  <span class=\"rui-helptext-icon ion-help-circled\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\" ng-click=\"clicked=!clicked\" >\n" +
-    "    <span class=\"rui-tooltip rui-helptext-tooltip\" ng-class=\"{'rui-hidden': (!(clicked || showtooltip))}\">{{message}}</span>\n" +
-    "  </span>\n" +
+    "  <span class=\"rui-helptext-icon ion-help-circled\" rui-tooltip message={{message}}></span>\n" +
     "  <!-- <a class=\"rui-helptext-icon ion-help-circled\"><div rui-tooltip-data='{{message}}'></div></a> -->\n" +
     "</div>\n"
   );
