@@ -1,9 +1,12 @@
+.rui-tooltip-container{
+  position: relative;
+}
 .rui-tooltip{
   position: absolute;
   display: block;
   width: 300px;
   bottom: calc(9px + 100%);
-  left: calc(-31px + 50%);
+  left: calc(50%);
   padding: 8px;
   border: 1px solid $green;
   color: $darkgrey;
