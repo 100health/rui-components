@@ -1,20 +1,20 @@
 var app = angular.module('ruiComponents');
 
-app.directive('ruiTooltip', ['$compile', function ($compile) {
-	return {
-		restrict: 'A',
-		scope: {
+app.directive('ruiTooltip', [function() {
+  return {
+    restrict: 'A',
+    scope: {
       message: '@',
       data: '='
     },
-    transclude: "element",
+    transclude: true,
     replace: true,
     templateUrl: 'templates/tooltip.html',
 
-    link: function(scope, element, attrs, ctrl, linker){
-      if (scope.data){
+    link: function(scope, element, attrs, ctrl, linker) {
+      if (scope.data) {
         scope.message = scope.data;
       }
     }
-	};
+  };
 }]);

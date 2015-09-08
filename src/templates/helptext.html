@@ -1,6 +1,4 @@
 <div class="rui-helptext-container">
-  <span class="rui-helptext-icon ion-help-circled" ng-mouseover="showtooltip=true" ng-mouseleave="showtooltip=false" ng-click="clicked=!clicked" >
-    <span class="rui-tooltip rui-helptext-tooltip" ng-class="{'rui-hidden': (!(clicked || showtooltip))}">{{message}}</span>
-  </span>
+  <span class="rui-helptext-icon ion-help-circled" rui-tooltip message={{message}}></span>
   <!-- <a class="rui-helptext-icon ion-help-circled"><div rui-tooltip-data='{{message}}'></div></a> -->
 </div>
