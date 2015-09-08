@@ -551,10 +551,15 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "  <div>\n" +
     "\t\t<h2 class=\"page-header\">Tooltip: <code>rui-tooltip</code></h2>\n" +
+    "    \n" +
     "    <p>\n" +
     "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Use either the <code>message</code> or <code>data</code> attribute to specify the help text. <code>message</code> takes a string of helptext. <code>data</code> take an expression (such as a scope variable) that evaluates to help text.\n" +
     "    </p>\n" +
-    "\t\t<label rui-tooltip message=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
+    "\n" +
+    "    <label rui-tooltip message=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
+    "\n" +
+    "    This is some sample text, with a tooltip option in the <b><span rui-tooltip message=\"Cool, this tooltip is inline.\">middle.</span></b>\n" +
+    "\n" +
     "    <br/>\n" +
     "\t</div>\n" +
     "\n" +
@@ -923,12 +928,10 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('templates/tooltip.html',
-    "<div>\n" +
-    "  <span class=\"rui-tooltip-container\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\" ng-click=\"clicked=!clicked\">\n" +
-    "    <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!(clicked || showtooltip))}\">{{message}}</span>\n" +
-    "    <div ng-transclude> </div>\n" +
-    "  </span>\n" +
-    "</div>\n"
+    "<span class=\"rui-tooltip-container\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\" ng-click=\"clicked=!clicked\">\n" +
+    "  <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!(clicked || showtooltip))}\">{{message}}</span>\n" +
+    "  <span ng-transclude> </span>\n" +
+    "</span>\n"
   );
 
 }]);
