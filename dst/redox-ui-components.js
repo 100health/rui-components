@@ -926,8 +926,8 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('templates/tooltip.html',
-    "<span class=\"rui-tooltip-container\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\" ng-click=\"clicked=!clicked\">\n" +
-    "  <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!(clicked || showtooltip))}\">{{message}}</span>\n" +
+    "<span class=\"rui-tooltip-container\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\">\n" +
+    "  <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!showtooltip)}\">{{message}}</span>\n" +
     "  <span ng-transclude> </span>\n" +
     "</span>\n"
   );
