@@ -92,6 +92,20 @@
 	</div>
 
   <div>
+		<h2 class="page-header">Tooltip: <code>rui-tooltip</code></h2>
+    
+    <p>
+      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Use either the <code>message</code> or <code>data</code> attribute to specify the help text. <code>message</code> takes a string of helptext. <code>data</code> take an expression (such as a scope variable) that evaluates to help text.
+    </p>
+
+    <label rui-tooltip message="This is the tooltip sample text that is found at the tip of the tool." style="font-size:20px;">Hover Over Me!</label>
+
+    This is some sample text, with a tooltip option in the <b><span rui-tooltip message="Cool, this tooltip is inline.">middle.</span></b>
+
+    <br/>
+	</div>
+
+  <div>
     <h2 class="page-header">Cards: <code>rui-card</code></h2>
     <rui-card ref="dashboard.organization.index({orgId: org.id})">
       Sample Organization 1
