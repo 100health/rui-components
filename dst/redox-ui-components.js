@@ -438,7 +438,8 @@ app.directive('ruiTooltip', [function() {
     restrict: 'A',
     scope: {
       message: '@',
-      data: '='
+      data: '=',
+      wrap: '@'
     },
     transclude: true,
     replace: true,
@@ -551,7 +552,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "  <div>\n" +
     "\t\t<h2 class=\"page-header\">Tooltip: <code>rui-tooltip</code></h2>\n" +
-    "    \n" +
+    "\n" +
     "    <p>\n" +
     "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Use either the <code>message</code> or <code>data</code> attribute to specify the help text. <code>message</code> takes a string of helptext. <code>data</code> take an expression (such as a scope variable) that evaluates to help text.\n" +
     "    </p>\n" +
@@ -749,7 +750,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
 
   $templateCache.put('templates/helptext.html',
     "<div class=\"rui-helptext-container\">\n" +
-    "  <span class=\"rui-helptext-icon ion-help-circled\" rui-tooltip message={{message}}></span>\n" +
+    "  <span class=\"rui-helptext-icon ion-help-circled\" rui-tooltip message={{message}} wrap=\"true\"></span>\n" +
     "  <!-- <a class=\"rui-helptext-icon ion-help-circled\"><div rui-tooltip-data='{{message}}'></div></a> -->\n" +
     "</div>\n"
   );
@@ -927,7 +928,9 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
 
   $templateCache.put('templates/tooltip.html',
     "<span class=\"rui-tooltip-container\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\">\n" +
-    "  <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!showtooltip)}\">{{message}}</span>\n" +
+    "  <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!showtooltip), 'rui-tooltip-nowrap': !wrap, 'rui-tooltip-fix-width': wrap}\">\n" +
+    "    {{ message }}\n" +
+    "  </span>\n" +
     "  <span ng-transclude> </span>\n" +
     "</span>\n"
   );
