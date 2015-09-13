@@ -5,7 +5,8 @@ app.directive('ruiTooltip', [function() {
     restrict: 'A',
     scope: {
       message: '@',
-      data: '='
+      data: '=',
+      wrap: '@'
     },
     transclude: true,
     replace: true,

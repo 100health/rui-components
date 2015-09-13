@@ -4,7 +4,6 @@
 .rui-tooltip{
   position: absolute;
   display: block;
-  width: 300px;
   bottom: calc(9px + 100%);
   left: calc(-31px + 50%);
   padding: 8px;
@@ -44,4 +43,10 @@
 }
 .rui-hidden{
   visibility: hidden;
+}
+.rui-tooltip-fix-width{
+  width: 300px;
+}
+.rui-tooltip-nowrap{
+  white-space: nowrap;
 }
