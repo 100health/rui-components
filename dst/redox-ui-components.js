@@ -436,12 +436,12 @@ var app = angular.module('ruiComponents');
 app.directive('ruiTooltip', ["$document", "$compile", function($document, $compile) {
   return {
     restrict: 'A',
-    scope: true,
+    scope: {
+      ruiTooltip: "@"
+    },
     link: function(scope, element, attrs) {
-      var html = '<div class="rui-tooltip">{{ text }}</div>';
+      var html = '<div class="rui-tooltip">{{ ruiTooltip }}</div>';
       var tooltip = $compile(html)(scope);
-
-      scope.text = attrs.ruiTooltip;
 
       $document.find('body').append(tooltip);
 
@@ -455,8 +455,8 @@ app.directive('ruiTooltip', ["$document", "$compile", function($document, $compi
           topOffset = containerPosition.top + window.pageYOffset; //account for scrolling of the window
 
         offset.top = topOffset - tooltipHeight - 10; //-10 for the down arrow
-        offset.left = containerPosition.left + (containerPosition.width / 2) - 31;
-        
+        offset.left = containerPosition.left + (containerPosition.width / 2) - 30; //-31 for the tip of the arrow
+
         tooltip.offset(offset);
       });
 
@@ -471,6 +471,10 @@ app.directive('ruiTooltip', ["$document", "$compile", function($document, $compi
 
       tooltip.bind('mouseout', function() {
         tooltip.removeClass('rui-tooltip-show');
+      });
+
+      element.on('$destroy', function() {
+        tooltip.remove();
       });
     }
   };
