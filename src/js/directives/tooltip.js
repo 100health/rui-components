@@ -17,13 +17,13 @@ app.directive('ruiTooltip', function($document, $compile) {
 
         //find the container of our element so that we can position our tooltip
         var containerPosition = e.target.getBoundingClientRect(),
-          offset = {}, // = tooltip.offset(),
+          offset = {},
           tooltipHeight = tooltip.outerHeight(),
           topOffset = containerPosition.top + window.pageYOffset; //account for scrolling of the window
-          console.log(tooltipHeight);
-        offset.top = topOffset - (containerPosition.height / 2) - tooltipHeight;
-        offset.left = containerPosition.left + (containerPosition.width / 2) - 31;
 
+        offset.top = topOffset - tooltipHeight - 10; //-10 for the down arrow
+        offset.left = containerPosition.left + (containerPosition.width / 2) - 31;
+        
         tooltip.offset(offset);
       });
 

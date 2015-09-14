@@ -450,13 +450,13 @@ app.directive('ruiTooltip', ["$document", "$compile", function($document, $compi
 
         //find the container of our element so that we can position our tooltip
         var containerPosition = e.target.getBoundingClientRect(),
-          offset = {}, // = tooltip.offset(),
+          offset = {},
           tooltipHeight = tooltip.outerHeight(),
           topOffset = containerPosition.top + window.pageYOffset; //account for scrolling of the window
-          console.log(tooltipHeight);
-        offset.top = topOffset - (containerPosition.height / 2) - tooltipHeight;
-        offset.left = containerPosition.left + (containerPosition.width / 2) - 31;
 
+        offset.top = topOffset - tooltipHeight - 10; //-10 for the down arrow
+        offset.left = containerPosition.left + (containerPosition.width / 2) - 31;
+        
         tooltip.offset(offset);
       });
 
@@ -577,7 +577,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\t\t<h2 class=\"page-header\">Tooltip: <code>rui-tooltip</code></h2>\n" +
     "\n" +
     "    <p>\n" +
-    "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Set the <code>rui-tooltip</code> attribute equal to the tooltip message. \n" +
+    "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Set the <code>rui-tooltip</code> attribute equal to the tooltip message.\n" +
     "    </p>\n" +
     "\n" +
     "    <label rui-tooltip=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
