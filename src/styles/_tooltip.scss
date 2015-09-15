@@ -1,12 +1,7 @@
-.rui-tooltip-container{
-  position: relative;
-}
 .rui-tooltip{
   position: absolute;
-  display: block;
-  width: 300px;
-  bottom: calc(9px + 100%);
-  left: calc(-31px + 50%);
+  display: none;
+  max-width: 300px;
   padding: 8px;
   border: 1px solid $green;
   color: $darkgrey;
@@ -39,9 +34,6 @@
   display: block;
   width: 0;
 }
-.rui-visibile{
-  visibility: visible;
-}
-.rui-hidden{
-  visibility: hidden;
+.rui-tooltip-show {
+  display: inherit;
 }

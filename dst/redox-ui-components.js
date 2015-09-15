@@ -433,21 +433,49 @@ app.directive('ruiToggle', ['$compile' ,function ($compile) {
 }]);
 var app = angular.module('ruiComponents');
 
-app.directive('ruiTooltip', [function() {
+app.directive('ruiTooltip', ["$document", "$compile", function($document, $compile) {
   return {
     restrict: 'A',
     scope: {
-      message: '@',
-      data: '='
+      ruiTooltip: "@"
     },
-    transclude: true,
-    replace: true,
-    templateUrl: 'templates/tooltip.html',
+    link: function(scope, element, attrs) {
+      var html = '<div class="rui-tooltip">{{ ruiTooltip }}</div>';
+      var tooltip = $compile(html)(scope);
 
-    link: function(scope, element, attrs, ctrl, linker) {
-      if (scope.data) {
-        scope.message = scope.data;
-      }
+      $document.find('body').append(tooltip);
+
+      element.bind('mouseover', function(e) {
+        tooltip.addClass('rui-tooltip-show');
+
+        //find the container of our element so that we can position our tooltip
+        var containerPosition = e.target.getBoundingClientRect(),
+          offset = {},
+          tooltipHeight = tooltip.outerHeight(),
+          topOffset = containerPosition.top + window.pageYOffset; //account for scrolling of the window
+
+        offset.top = topOffset - tooltipHeight - 10; //-10 for the down arrow
+        offset.left = containerPosition.left + (containerPosition.width / 2) - 30; //-31 for the tip of the arrow
+
+        tooltip.offset(offset);
+      });
+
+      element.bind('mouseout', function() {
+        tooltip.removeClass('rui-tooltip-show');
+      });
+
+      //keep tooltip active if hovering over its contents
+      tooltip.bind('mouseover', function() {
+        tooltip.addClass('rui-tooltip-show');
+      });
+
+      tooltip.bind('mouseout', function() {
+        tooltip.removeClass('rui-tooltip-show');
+      });
+
+      element.on('$destroy', function() {
+        tooltip.remove();
+      });
     }
   };
 }]);
@@ -551,14 +579,14 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "  <div>\n" +
     "\t\t<h2 class=\"page-header\">Tooltip: <code>rui-tooltip</code></h2>\n" +
-    "    \n" +
+    "\n" +
     "    <p>\n" +
-    "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Use either the <code>message</code> or <code>data</code> attribute to specify the help text. <code>message</code> takes a string of helptext. <code>data</code> take an expression (such as a scope variable) that evaluates to help text.\n" +
+    "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Set the <code>rui-tooltip</code> attribute equal to the tooltip message.\n" +
     "    </p>\n" +
     "\n" +
-    "    <label rui-tooltip message=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
+    "    <label rui-tooltip=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
     "\n" +
-    "    This is some sample text, with a tooltip option in the <b><span rui-tooltip message=\"Cool, this tooltip is inline.\">middle.</span></b>\n" +
+    "    This is some sample text, with a tooltip option in the <b><span rui-tooltip=\"Cool, this tooltip is inline.\">middle.</span></b>\n" +
     "\n" +
     "    <br/>\n" +
     "\t</div>\n" +
@@ -749,7 +777,9 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
 
   $templateCache.put('templates/helptext.html',
     "<div class=\"rui-helptext-container\">\n" +
-    "  <span class=\"rui-helptext-icon ion-help-circled\" rui-tooltip message={{message}}></span>\n" +
+    "  <span rui-tooltip={{message}}>\n" +
+    "    <span class=\"rui-helptext-icon ion-help-circled\"></span>\n" +
+    "  </span>\n" +
     "  <!-- <a class=\"rui-helptext-icon ion-help-circled\"><div rui-tooltip-data='{{message}}'></div></a> -->\n" +
     "</div>\n"
   );
@@ -922,14 +952,6 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "    </polygon>\n" +
     "  </g>\n" +
     "</svg>\n"
-  );
-
-
-  $templateCache.put('templates/tooltip.html',
-    "<span class=\"rui-tooltip-container\" ng-mouseover=\"showtooltip=true\" ng-mouseleave=\"showtooltip=false\">\n" +
-    "  <span class=\"rui-tooltip\" ng-class=\"{'rui-hidden': (!showtooltip)}\">{{message}}</span>\n" +
-    "  <span ng-transclude> </span>\n" +
-    "</span>\n"
   );
 
 }]);
