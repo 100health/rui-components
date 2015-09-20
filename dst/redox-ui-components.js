@@ -589,6 +589,34 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "    This is some sample text, with a tooltip option in the <b><span rui-tooltip=\"Cool, this tooltip is inline.\">middle.</span></b>\n" +
     "\n" +
     "    <br/>\n" +
+    "    <!--Modal Testing-->\n" +
+    "    <!-- Button trigger modal -->\n" +
+    "    <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">\n" +
+    "      Launch Modal\n" +
+    "    </button>\n" +
+    "    \n" +
+    "    <!-- Modal -->\n" +
+    "    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n" +
+    "      <div class=\"modal-dialog\" role=\"document\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "          <div class=\"modal-header\">\n" +
+    "            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n" +
+    "            <h4 class=\"modal-title\" id=\"myModalLabel\">Modal title</h4>\n" +
+    "          </div>\n" +
+    "          <div class=\"modal-body\">\n" +
+    "             <label rui-tooltip=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
+    "\n" +
+    "              This is some sample text, with a tooltip option in the <b><span rui-tooltip=\"Cool, this tooltip is inline.\">middle.</span></b>\n" +
+    "              \n" +
+    "              <span rui-tooltip=\"testing the span\">span</span>\n" +
+    "          </div>\n" +
+    "          <div class=\"modal-footer\">\n" +
+    "            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <!--End Modal Testin-->\n" +
     "\t</div>\n" +
     "\n" +
     "  <div>\n" +

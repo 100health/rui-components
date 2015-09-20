@@ -103,6 +103,34 @@
     This is some sample text, with a tooltip option in the <b><span rui-tooltip="Cool, this tooltip is inline.">middle.</span></b>
 
     <br/>
+    <!--Modal Testing-->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Launch Modal
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+             <label rui-tooltip="This is the tooltip sample text that is found at the tip of the tool." style="font-size:20px;">Hover Over Me!</label>
+
+              This is some sample text, with a tooltip option in the <b><span rui-tooltip="Cool, this tooltip is inline.">middle.</span></b>
+              
+              <span rui-tooltip="testing the span">span</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Modal Testin-->
 	</div>
 
   <div>
