@@ -8,11 +8,11 @@
       <a ng-click="create()">Create</a>
     </div>
     <div class="cancel-container">
-      <a ng-click="editing = !editing"><span class="ion-close-circled" style="font-size:12px;margin-right:2px;"></span>cancel</a>
+      <a ng-click="editing = false"><span class="ion-close-circled" style="font-size:12px;margin-right:2px;"></span>cancel</a>
     </div>
   </div>
 
-  <div class="card-box" id="iconCard" ng-hide="editing" ng-click="editing = !editing">
+  <div class="card-box" id="iconCard" ng-hide="editing" ng-click="onClick ? onClick() : (editing = true)">
     <div class="card-box-text">
       <div class="card-create-icon ion-plus"></div>
       <ng-transclude>
