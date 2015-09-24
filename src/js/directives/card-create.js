@@ -11,10 +11,14 @@ app.directive('ruiCardCreate', function () {
     },
     link: function(scope, element, attrs) {
 
-			scope.onClick = function () {
-				scope.editing = true;
-				scope.clickFn();
-			};
+      scope.onClick = function () {
+        // check attrs since scope.clickFn is truthy even if the attribute is not set
+        if (attrs.clickFn) {
+          scope.clickFn();
+        } else {
+          scope.editing = true;
+        }
+      };
 
       scope.create = function() {
         scope.createFn({name: scope.createinput});

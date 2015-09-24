@@ -189,10 +189,14 @@ app.directive('ruiCardCreate', function () {
     },
     link: function(scope, element, attrs) {
 
-			scope.onClick = function () {
-				scope.editing = true;
-				scope.clickFn();
-			};
+      scope.onClick = function () {
+        // check attrs since scope.clickFn is truthy even if the attribute is not set
+        if (attrs.clickFn) {
+          scope.clickFn();
+        } else {
+          scope.editing = true;
+        }
+      };
 
       scope.create = function() {
         scope.createFn({name: scope.createinput});
@@ -589,10 +593,10 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "    <h2 class=\"page-header\">Create Card: <code>rui-card-create</code></h2>\n" +
     "    <p>\n" +
-    "      <code>rui-create-card</code> takes a <code>create-fn</code> and/or a <code>click-fn</code> attribute. The function you put in <code>create-fn</code> is run after the user enters a name and clicks \"create\". It receives the name as its first parameter.\n" +
+    "      <code>rui-create-card</code> takes a <code>create-fn</code> or a <code>click-fn</code> attribute. The function you put in <code>create-fn</code> is run after the user enters a name and clicks \"create\". It receives the name as its first parameter.\n" +
     "    </p>\n" +
     "    <p>\n" +
-    "      <code>click-fn</code> is run when the user clicks on the card, before the name field is shown. You can use this to launch a modal form and hijack the record creation process. In this case, <code>create-fn</code> would be ignored and the modal would be responsible for taking user input, creating the record, and navigating to the newly created record. Or you could use it to run a function that does not hijack the record creation process, in which case the name input will be shown and <code>create-fn</code> will be run as usual.\n" +
+    "      Use <code>click-fn</code> if you want to substitute the normal record creation process with your own. The click function  is run when the user clicks on the card, before the name field is shown. You can use it to, for example, launch a modal form and hijack the record creation process. In this case, <code>click-fn</code> is responsible for the full record creation process.  <code>create-fn</code> is ignored.\n" +
     "    </p>\n" +
     "    <div>\n" +
     "      <rui-card-create create-fn=\"sampleCreate(name)\">\n" +
