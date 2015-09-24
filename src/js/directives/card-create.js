@@ -10,12 +10,11 @@ app.directive('ruiCardCreate', function () {
       clickFn: '&'
     },
     link: function(scope, element, attrs) {
-      if (attrs.clickFn) {
-        // alias because scope.clickFn will have a value even if the attribute
-        // was not used. Setting onClick allows us to make sure there really is
-        // a click function
-        scope.onClick = scope.clickFn;
-      }
+
+			scope.onClick = function () {
+				scope.editing = true;
+				scope.clickFn();
+			};
 
       scope.create = function() {
         scope.createFn({name: scope.createinput});

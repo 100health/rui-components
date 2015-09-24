@@ -1,7 +1,7 @@
 angular.module('ruiComponents', ['truncate', 'mgcrea.ngStrap']);
 
 angular.module('ruiComponents')
-  .controller('ruiAppController', ['$scope', function($scope){
+  .controller('ruiAppController', ['$scope', '$modal', function($scope, $modal){
 
     // Buttons
     $scope.clickCnt = 0;
@@ -17,8 +17,15 @@ angular.module('ruiComponents')
     $scope.helptextdata="data from controller";
 
     // Cards
-    $scope.samplecreate = function(name){
+    $scope.sampleCreate = function(name){
       alert('create ' + name)
+    };
+
+    $scope.sampleClick = function() {
+      $modal({
+        title: 'Click!',
+        content: 'Thank you for clicking'
+      });
     };
 
     // Alert
