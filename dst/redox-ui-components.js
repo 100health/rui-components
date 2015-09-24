@@ -1,7 +1,7 @@
 angular.module('ruiComponents', ['truncate', 'mgcrea.ngStrap']);
 
 angular.module('ruiComponents')
-  .controller('ruiAppController', ['$scope', function($scope){
+  .controller('ruiAppController', ['$scope', '$modal', function($scope, $modal){
 
     // Buttons
     $scope.clickCnt = 0;
@@ -17,8 +17,15 @@ angular.module('ruiComponents')
     $scope.helptextdata="data from controller";
 
     // Cards
-    $scope.samplecreate = function(name){
+    $scope.sampleCreate = function(name){
       alert('create ' + name)
+    };
+
+    $scope.sampleClick = function() {
+      $modal({
+        title: 'Click!',
+        content: 'Thank you for clicking'
+      });
     };
 
     // Alert
@@ -171,22 +178,29 @@ app.directive('ruiButton', function () {
 });
 var app = angular.module('ruiComponents');
 
-app.directive('ruiCardCreate', ['$compile', function ($compile) {
-	return {
-		restrict: 'E',
+app.directive('ruiCardCreate', function () {
+  return {
+    restrict: 'E',
     transclude: true,
     templateUrl: 'templates/card-create.html',
-		scope: {
-      createFn: "&"
+    scope: {
+      createFn: '&',
+      clickFn: '&'
     },
-    link: function($scope, $element, $attrs){
-      $scope.create = function(){
-        $scope.createFn({name: $scope.createinput});
-        $scope.editing = false;
-      }
+    link: function(scope, element, attrs) {
+
+			scope.onClick = function () {
+				scope.editing = true;
+				scope.clickFn();
+			};
+
+      scope.create = function() {
+        scope.createFn({name: scope.createinput});
+        scope.editing = false;
+      };
     }
-	};
-}]);
+  };
+});
 
 var app = angular.module('ruiComponents');
 
@@ -551,7 +565,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "  <div>\n" +
     "\t\t<h2 class=\"page-header\">Tooltip: <code>rui-tooltip</code></h2>\n" +
-    "    \n" +
+    "\n" +
     "    <p>\n" +
     "      Add an <code>rui-tooltip</code> attribute to the element you want supplemented with help text using a hover. Use either the <code>message</code> or <code>data</code> attribute to specify the help text. <code>message</code> takes a string of helptext. <code>data</code> take an expression (such as a scope variable) that evaluates to help text.\n" +
     "    </p>\n" +
@@ -574,10 +588,23 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "    <div style=\"visibility:hidden;display:block;height:0;clear:both;\"></div>\n" +
     "\n" +
     "    <h2 class=\"page-header\">Create Card: <code>rui-card-create</code></h2>\n" +
-    "    <rui-card-create create-fn=\"samplecreate(name)\">\n" +
-    "      Create Organization\n" +
-    "    </rui-card-create>\n" +
-    "      <div style=\"visibility:hidden;display:block;height:0;clear:both;\"></div>\n" +
+    "    <p>\n" +
+    "      <code>rui-create-card</code> takes a <code>create-fn</code> and/or a <code>click-fn</code> attribute. The function you put in <code>create-fn</code> is run after the user enters a name and clicks \"create\". It receives the name as its first parameter.\n" +
+    "    </p>\n" +
+    "    <p>\n" +
+    "      <code>click-fn</code> is run when the user clicks on the card, before the name field is shown. You can use this to launch a modal form and hijack the record creation process. In this case, <code>create-fn</code> would be ignored and the modal would be responsible for taking user input, creating the record, and navigating to the newly created record. Or you could use it to run a function that does not hijack the record creation process, in which case the name input will be shown and <code>create-fn</code> will be run as usual.\n" +
+    "    </p>\n" +
+    "    <div>\n" +
+    "      <rui-card-create create-fn=\"sampleCreate(name)\">\n" +
+    "        With Create Function\n" +
+    "      </rui-card-create>\n" +
+    "    </div>\n" +
+    "    <div>\n" +
+    "      <rui-card-create click-fn=\"sampleClick()\">\n" +
+    "        With Click Function\n" +
+    "      </rui-card-create>\n" +
+    "    </div>\n" +
+    "    <div style=\"visibility:hidden;display:block;height:0;clear:both;\"></div>\n" +
     "  </div>\n" +
     "\n" +
     "  <div>\n" +
@@ -703,11 +730,11 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "      <a ng-click=\"create()\">Create</a>\n" +
     "    </div>\n" +
     "    <div class=\"cancel-container\">\n" +
-    "      <a ng-click=\"editing = !editing\"><span class=\"ion-close-circled\" style=\"font-size:12px;margin-right:2px;\"></span>cancel</a>\n" +
+    "      <a ng-click=\"editing = false\"><span class=\"ion-close-circled\" style=\"font-size:12px;margin-right:2px;\"></span>cancel</a>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "\n" +
-    "  <div class=\"card-box\" id=\"iconCard\" ng-hide=\"editing\" ng-click=\"editing = !editing\">\n" +
+    "  <div class=\"card-box\" id=\"iconCard\" ng-hide=\"editing\" ng-click=\"onClick()\">\n" +
     "    <div class=\"card-box-text\">\n" +
     "      <div class=\"card-create-icon ion-plus\"></div>\n" +
     "      <ng-transclude>\n" +
