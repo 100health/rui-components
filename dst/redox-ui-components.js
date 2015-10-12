@@ -394,6 +394,9 @@ app.directive('ruiSpinner', function () {
 
   return {
     restrict: 'E',
+    scope: {
+      color: '@'
+    },
     templateUrl: 'templates/spinner.html'
   };
 
@@ -612,7 +615,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "    <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">\n" +
     "      Launch Modal\n" +
     "    </button>\n" +
-    "    \n" +
+    "\n" +
     "    <!-- Modal -->\n" +
     "    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n" +
     "      <div class=\"modal-dialog\" role=\"document\">\n" +
@@ -625,7 +628,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "             <label rui-tooltip=\"This is the tooltip sample text that is found at the tip of the tool.\" style=\"font-size:20px;\">Hover Over Me!</label>\n" +
     "\n" +
     "              This is some sample text, with a tooltip option in the <b><span rui-tooltip=\"Cool, this tooltip is inline.\">middle.</span></b>\n" +
-    "              \n" +
+    "\n" +
     "              <span rui-tooltip=\"testing the span\">span</span>\n" +
     "          </div>\n" +
     "          <div class=\"modal-footer\">\n" +
@@ -731,13 +734,16 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "  </div>\n" +
     "  <div>\n" +
     "      <p>Use the spinner to indicate work in progress. You can toggle it with ng-show. There is an inline version and a fullscreen version. The fullscreen version takes <code>top</code> and <code>left</code> attributes to indicate an offset so you can leave navigation exposed.</p>\n" +
+    "      <p>The default color is Redox green, but you an specify a different color with the \"color\" attribute.</p>\n" +
     "      <rui-button ng-click=\"glimpseFullScreenSpinner()\">show fullscreen spinner</rui-button>\n" +
     "      <rui-fullscreen-spinner text=\"spinnerText\" ng-show=\"showFullScreenSpinner\"></rui-fullscreen-spinner>\n" +
     "      <br>\n" +
     "\n" +
     "      <rui-button ng-click=\"showInlineSpinner = !showInlineSpinner\">toggle inline spinner</rui-button>\n" +
     "      <br>\n" +
-    "      <rui-spinner ng-show=\"showInlineSpinner\" fullscreen></rui-spinner>\n" +
+    "      <rui-spinner ng-show=\"showInlineSpinner\"></rui-spinner>\n" +
+    "      <rui-spinner ng-show=\"showInlineSpinner\" color=\"#333\"></rui-spinner>\n" +
+    "\n" +
     "  </div>\n" +
     "\n" +
     "  <style media=\"screen\">\n" +
@@ -884,7 +890,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"60px\" height=\"60px\"\n" +
     "   viewBox=\"0 0 60 60\" enable-background=\"new 0 0 60 60\" xml:space=\"preserve\">\n" +
     "  <g>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c0\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -895,7 +901,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c1\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -906,7 +912,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c2\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -917,7 +923,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c3\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -928,7 +934,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c4\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -939,7 +945,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c5\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -949,7 +955,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c6\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -959,7 +965,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c7\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -969,7 +975,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c8\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -979,7 +985,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c9\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -989,7 +995,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c10\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
@@ -999,7 +1005,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "       repeatCount=\"indefinite\" />\n" +
     "\n" +
     "    </polygon>\n" +
-    "    <polygon fill=\"#00B288\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
+    "    <polygon fill=\"{{ color || '#00B288'}}\" points=\"33,3.6 27.6,0.1 26.9,0.1 26.9,3.5 30.2,5.5 26.9,7.4 26.9,10.8 27.6,10.8 33,7.3  \">\n" +
     "\n" +
     "    <animateTransform id=\"c11\" attributeName=\"transform\"\n" +
     "       attributeType=\"XML\"\n" +
