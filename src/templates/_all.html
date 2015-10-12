@@ -108,7 +108,7 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
       Launch Modal
     </button>
-    
+
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -121,7 +121,7 @@
              <label rui-tooltip="This is the tooltip sample text that is found at the tip of the tool." style="font-size:20px;">Hover Over Me!</label>
 
               This is some sample text, with a tooltip option in the <b><span rui-tooltip="Cool, this tooltip is inline.">middle.</span></b>
-              
+
               <span rui-tooltip="testing the span">span</span>
           </div>
           <div class="modal-footer">
@@ -227,13 +227,16 @@
   </div>
   <div>
       <p>Use the spinner to indicate work in progress. You can toggle it with ng-show. There is an inline version and a fullscreen version. The fullscreen version takes <code>top</code> and <code>left</code> attributes to indicate an offset so you can leave navigation exposed.</p>
+      <p>The default color is Redox green, but you an specify a different color with the "color" attribute.</p>
       <rui-button ng-click="glimpseFullScreenSpinner()">show fullscreen spinner</rui-button>
       <rui-fullscreen-spinner text="spinnerText" ng-show="showFullScreenSpinner"></rui-fullscreen-spinner>
       <br>
 
       <rui-button ng-click="showInlineSpinner = !showInlineSpinner">toggle inline spinner</rui-button>
       <br>
-      <rui-spinner ng-show="showInlineSpinner" fullscreen></rui-spinner>
+      <rui-spinner ng-show="showInlineSpinner"></rui-spinner>
+      <rui-spinner ng-show="showInlineSpinner" color="#333"></rui-spinner>
+
   </div>
 
   <style media="screen">

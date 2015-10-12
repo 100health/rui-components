@@ -5,6 +5,9 @@ app.directive('ruiSpinner', function () {
 
   return {
     restrict: 'E',
+    scope: {
+      color: '@'
+    },
     templateUrl: 'templates/spinner.html'
   };
 
