@@ -1,14 +1,15 @@
-.rui-chip {
-  display: inline-block;
-  width: auto;
-  border-radius: 15px;
-  padding: 6px 6px 6px 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-
-  span {
-    margin-right: 4px;
-  }
+.rui-chip{
+	height:30px;
+	width: auto;
+	border-radius: 4px;
+	float: left;
+	padding: 6px 6px 6px 10px;
+	margin-top: 5px;
+	margin-right: 5px;
+  
+	span{
+		margin-right: 4px;
+	}
 }
 
 button.rui-close {
