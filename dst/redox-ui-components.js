@@ -790,7 +790,7 @@ angular.module('ruiComponents').run(['$templateCache', function($templateCache) 
     "\n" +
     "  <div class=\"card-box\" id=\"inputCard\" ng-show=\"editing\">\n" +
     "    <div class=\"card-box-text\">\n" +
-    "      <input type=\"text\" ng-model=\"createinput\" id=\"createinput\" name=\"createinput\" autofocus=\"true\" rui-enter=\"create()\"></input>\n" +
+    "      <input type=\"text\" ng-model=\"createinput\" id=\"createinput\" name=\"createinput\" autofocus=\"true\" placeholder=\"Enter Name\" rui-enter=\"create()\"></input>\n" +
     "    </div>\n" +
     "    <div class=\"create-container\">\n" +
     "      <a ng-click=\"create()\">Create</a>\n" +
