@@ -228,7 +228,7 @@ module.exports = function(grunt) {
 		git_deploy: {
 			your_target: {
 				options: {
-					url: 'https://github.com/100health/rui-components.git',
+					url: 'git@github.com:100health/rui-components.git',
 					branch: 'gh-pages'
 				},
 				src: 'ghpages'

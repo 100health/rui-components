@@ -34,3 +34,5 @@ bower_components
 # Operating System Files
 .DS_Store
 
+# GitHub Pages
+ghpages/
