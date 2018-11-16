@@ -16,7 +16,7 @@
       text-decoration: none;
     }
     a:hover{
-      color: $green;
+      color: $teal;
       cursor: pointer;
     }
   }
@@ -48,7 +48,7 @@
         }
       }
       a:hover {
-        background-color: $green;
+        background-color: $teal;
         cursor: pointer;
         text-decoration: none;
       }
@@ -70,7 +70,7 @@
       }
     }
     li.active {
-      background-color: $darkgreen;
+      background-color: $teal;
       text-decoration: none;
       span{
         color: $white;

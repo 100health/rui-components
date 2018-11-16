@@ -14,29 +14,29 @@
   border-color: $lightgrey;
   &:hover {
     color: $white;
-    background-color: $green;
-    border-color: $green;
+    background-color: $teal;
+    border-color: $teal;
   }
   &:focus {
     color: $white;
-    background-color: $green;
-    border-color: $green;
+    background-color: $teal;
+    border-color: $teal;
   }
 }
 
 .rui-btn-primary {
-  background-color: $orange;
+  background-color: $red;
   color: $lightgrey;
-  border-color: $lightorange;
+  border-color: $coral;
   &:hover{
-    background-color: $lightorange;
-    color: $orange;
-    border-color: $lightorange;
+    background-color: $coral;
+    color: $red;
+    border-color: $coral;
   }
   &:focus{
-    background-color: $lightorange;
-    color: $orange;
-    border-color: $lightorange;
+    background-color: $coral;
+    color: $red;
+    border-color: $coral;
   }
   &:disabled {
     background-color: $darkgrey;
@@ -50,11 +50,11 @@
   color: $white;
   &:hover{
     background-color: $darkgrey;
-    color: $green;
+    color: $teal;
   }
   &:focus{
     background-color: $darkgrey;
-    color: $green;
+    color: $teal;
   }
   &:disabled{
     background-color: $darkgrey;

@@ -12,7 +12,7 @@
     padding: 0;
   }
   input:checked+label{
-    background: $green;
+    background: $teal;
   }
   input:checked+label:before {
     -webkit-transform: translate(76px,0);

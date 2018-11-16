@@ -17,8 +17,8 @@
   border-radius: 2px;
   &:hover{
     cursor: pointer;
-    color: $orange !important;
-    border-color: $orange $lightgrey $lightgrey $lightgrey ;
+    color: $red !important;
+    border-color: $red $lightgrey $lightgrey $lightgrey ;
     border-width: 3px 1px 1px 1px ;
   }
   .card-box-text{
@@ -54,8 +54,8 @@ rui-card-create{
     color: $grey;
     margin-left: 20px;
     &:hover{
-      color: $green;
-      border-color: $green;
+      color: $teal;
+      border-color: $teal;
     }
   }
   & .card-box-text{
@@ -66,7 +66,7 @@ rui-card-create{
     margin-top: 20px;
   }
   & .card-box:hover{
-    color: $green !important;
+    color: $teal !important;
     border-width: 1px 1px 1px 1px ;
 
   }
