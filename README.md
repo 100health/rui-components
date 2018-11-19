@@ -1,3 +1,7 @@
+# DEPRECATED.
+
+Further dashboard updates can be done directly in the dashboard repository: https://github.com/100health/dashboard
+
 # rui-components
 
 A set of angular directives for use in RedoxEngine
